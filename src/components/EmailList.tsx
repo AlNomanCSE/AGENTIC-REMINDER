@@ -1,4 +1,4 @@
-import { Email } from './SmartInbox';
+import { Email } from '@/data/mockData';
 import { Paperclip, Circle } from 'lucide-react';
 
 interface EmailListProps {
@@ -33,14 +33,13 @@ export function EmailList({ emails, selectedEmail, onSelectEmail }: EmailListPro
           <div
             key={email.id}
             onClick={() => onSelectEmail(email)}
-            className={`p-4 cursor-pointer transition-colors hover:bg-gray-50 ${
-              selectedEmail?.id === email.id ? 'bg-blue-50' : ''
-            }`}
+            className={`p-4 cursor-pointer transition-colors hover:bg-gray-50 ${selectedEmail?.id === email.id ? 'bg-blue-50' : ''
+              }`}
           >
             <div className="flex items-start gap-3">
               {/* Priority Indicator */}
               <div className={`w-1 h-20 rounded-full ${getPriorityColor(email.priority)} flex-shrink-0`}></div>
-              
+
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${getPriorityColor(email.priority)} text-white`}>

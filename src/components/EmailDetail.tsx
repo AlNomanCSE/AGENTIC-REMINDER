@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { Email } from './SmartInbox';
-import { 
-  CheckCircle, 
-  XCircle, 
-  RefreshCw, 
-  Edit3, 
-  Send, 
-  Paperclip, 
+import { Email } from '@/data/mockData';
+import {
+  CheckCircle,
+  XCircle,
+  RefreshCw,
+  Edit3,
+  Send,
+  Paperclip,
   Clock,
   Sparkles,
   ChevronDown,
@@ -208,7 +208,7 @@ export function EmailDetail({ email, onUpdateEmail }: EmailDetailProps) {
               <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg flex items-start gap-2">
                 <AlertCircle className="w-4 h-4 text-yellow-700 flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-yellow-800">
-                  This draft was generated based on your communication patterns and past responses. 
+                  This draft was generated based on your communication patterns and past responses.
                   Please review before sending.
                 </p>
               </div>
