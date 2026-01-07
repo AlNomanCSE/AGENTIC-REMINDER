@@ -1,14 +1,13 @@
 'use client';
 
-
 import { AppProvider, useApp } from '@/context/AppContext';
-import { SmartInbox } from '@/components/SmartInbox';
+
 import { WhatsAppInterface } from '@/components/WhatsAppInterface';
 import { KnowledgeBase } from '@/components/KnowledgeBase';
 import { AdminPanel } from '@/components/AdminPanel';
 import { LoginScreen } from '@/components/LoginScreen';
 import { TwoFactorAuth } from '@/components/TwoFactorAuth';
-import { Inbox, Brain, Settings, LogOut, MessageSquare } from 'lucide-react';
+import { Brain, Settings, LogOut, MessageSquare } from 'lucide-react';
 
 function MainApp() {
   const {
@@ -40,6 +39,11 @@ function MainApp() {
     return <LoginScreen onLogin={handleLogin} />;
   }
 
+  // Ensure 'inbox' isn't active if it was set previously
+  if (activeView === 'inbox') {
+    setActiveView('whatsapp');
+  }
+
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Sidebar Navigation */}
@@ -50,15 +54,6 @@ function MainApp() {
         </div>
 
         <nav className="flex-1 p-4">
-          <button
-            onClick={() => setActiveView('inbox')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-colors ${activeView === 'inbox' ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
-              }`}
-          >
-            <Inbox className="w-5 h-5" />
-            <span className="font-medium">Smart Inbox</span>
-          </button>
-
           <button
             onClick={() => setActiveView('whatsapp')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-colors ${activeView === 'whatsapp' ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
@@ -100,7 +95,6 @@ function MainApp() {
 
       {/* Main Content */}
       <main className="flex-1 overflow-hidden">
-        {activeView === 'inbox' && <SmartInbox />}
         {activeView === 'whatsapp' && <WhatsAppInterface />}
         {activeView === 'knowledge' && <KnowledgeBase />}
         {activeView === 'admin' && <AdminPanel />}
